@@ -20,7 +20,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/hotel")
 public class HotelManagementController {
-
+         HotelManagementService service = new HotelManagementService();
     @PostMapping("/add-hotel")
     public String addHotel(@RequestBody Hotel hotel){
 
@@ -31,6 +31,7 @@ public class HotelManagementController {
 
 
         return null;
+         return  service.addHotel(hotel);
     }
 
     @PostMapping("/add-user")
@@ -40,6 +41,7 @@ public class HotelManagementController {
         //Assume that user will always be a valid user and return the aadharCardNo of the user
 
        return null;
+        return service.addUser(user);
     }
 
     @GetMapping("/get-hotel-with-most-facilities")
@@ -50,6 +52,7 @@ public class HotelManagementController {
         //Incase there is not even a single hotel with atleast 1 facility return "" (empty string)
 
         return null;
+         return service.getHotelWithMostFacilities();
     }
 
     @PostMapping("/book-a-room")
@@ -63,6 +66,7 @@ public class HotelManagementController {
         //in other case return total amount paid 
         
         return 0;
+        return service.bookARoom(booking);
     }
     
     @GetMapping("/get-bookings-by-a-person/{aadharCard}")
@@ -70,6 +74,7 @@ public class HotelManagementController {
     {
         //In this function return the bookings done by a person 
         return 0;
+         return service.getBookings(aadharCard);
     }
 
     @PutMapping("/update-facilities")
@@ -80,6 +85,7 @@ public class HotelManagementController {
         //return the final updated List of facilities and also update that in your hotelDb
         //Note that newFacilities can also have duplicate facilities possible
         return null;
+         return service.updateFacilities(newFacilities,hotelName);
     }
 
 }
